@@ -2,9 +2,12 @@
 import Cards from "../UI/Card";
 import { useRef, useState } from "react";
 import LoginForm from "./LoginForm";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = (props) => {
   const [signUp, setSignUp] = useState(false);
+
+  const Navigate = useNavigate()
 
   // const [loggedIn, setLoggedIn] = useState(true);
 
@@ -52,6 +55,7 @@ const LoginPage = (props) => {
         setSignUp(false)
         data = await result.json();
         console.log(data.idToken);
+        Navigate('/HomePage')
       } else if (!result.ok) {
         let errorMessage = "Authentication Failed";
         data = await result.json();
