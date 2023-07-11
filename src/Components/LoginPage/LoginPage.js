@@ -1,13 +1,17 @@
 // import { Form, Breadcrumb, FloatingLabel, Button } from "react-bootstrap";
 import Cards from "../UI/Card";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import LoginContext from "../../Context/LoginContext";
 
 const LoginPage = (props) => {
   const [signUp, setSignUp] = useState(false);
 
   const Navigate = useNavigate()
+
+  const loginCtx = useContext(LoginContext)
+
 
   // const [loggedIn, setLoggedIn] = useState(true);
 
@@ -55,7 +59,8 @@ const LoginPage = (props) => {
         setSignUp(false)
         data = await result.json();
         console.log(data.idToken);
-        Navigate('/HomePage')
+        loginCtx.login(data.idToken)
+      
       } else if (!result.ok) {
         let errorMessage = "Authentication Failed";
         data = await result.json();
