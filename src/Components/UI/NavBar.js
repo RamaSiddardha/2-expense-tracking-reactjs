@@ -2,25 +2,28 @@ import { useContext } from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap";
 import LoginContext from "../../Context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 
 const NavBar = props =>{
 
     const loginCtx = useContext(LoginContext)
 
+    const navigate = useNavigate()
+
     return <Navbar fixed="top"
     bg="dark"
     expand="lg"
     variant="dark"
-    style={{ fontFamily: "didot", fontSize: "1.5rem", fontColor: "white" }}>
+    style={{ position : 'sticky',fontFamily: "didot", fontSize: "1.5rem", fontColor: "white" }}>
         <Container fluid>
-        <Navbar.Brand><Button variant="dark">Welcome To Expense Tracker</Button></Navbar.Brand>
+        <Navbar.Brand><Button variant="dark" onClick={()=>navigate('/')}><h4>Welcome To Expense Tracker</h4></Button></Navbar.Brand>
 
-        <LinkContainer to="/Profile">
+     { loginCtx.loggedin &&  <LinkContainer to="/Profile">
             <Nav.Link className="ms-5">
-              <Button variant="light">{'!!!!!!Complete the Profile'}</Button>
+              <Button variant="light">{loginCtx.profile ? 'Your Profile  is 100%':'Your Profile is incolplete. Complete Now'}</Button>
             </Nav.Link>
-          </LinkContainer>
+          </LinkContainer>}
         </Container>
 
     </Navbar>

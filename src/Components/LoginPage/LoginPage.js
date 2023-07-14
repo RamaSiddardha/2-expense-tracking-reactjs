@@ -58,8 +58,10 @@ const LoginPage = (props) => {
       if (result.ok) {
         setSignUp(false)
         data = await result.json();
-        console.log(data.idToken);
+        
         loginCtx.login(data.idToken)
+       
+        Navigate('/')
       
       } else if (!result.ok) {
         let errorMessage = "Authentication Failed";
@@ -73,9 +75,7 @@ const LoginPage = (props) => {
       alert(error.message);
     }
 
-    // console.log(result);
-
-    // result.json().then((res) => console.log(res));
+    
   };
 
   return (

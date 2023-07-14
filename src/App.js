@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./Components/LoginPage/LoginPage";
 // import HomePage from './Components/HomePage/HomePage';
-import NavBar from "./Components/UI/NavBar";
+// import NavBar from "./Components/UI/NavBar";
 import Profile from "./Components/ProfilePage/Profile";
 import RootLayout from "./Components/Rootlayout/RootLayout";
 import { useContext } from "react";
@@ -19,7 +19,7 @@ const loginCtx = useContext(LoginContext)
       element: <RootLayout/>,
       children: [
         { index: true, element: loginCtx.loggedin ?<HomePage/>:<LoginPage /> },
-        { path: "/Profile", element: <Profile /> },
+        { path: "/Profile", element:  loginCtx.loggedin ? <Profile/> :<LoginPage />},
       ],
     },
   ]);
