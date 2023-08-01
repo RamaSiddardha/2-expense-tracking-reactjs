@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import LoginContext from "../../Context/LoginContext";
-import { json } from "react-router-dom";
+// import { json } from "react-router-dom";
 
 const HomePage = (props) => {
   const loginCtx = useContext(LoginContext);
@@ -26,7 +26,7 @@ const HomePage = (props) => {
     const data = await result.json();
 
     // console.log(result)
-    // console.log(data )
+    console.log(data )
   };
 
   return (
